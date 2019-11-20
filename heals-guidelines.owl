@@ -145,14 +145,14 @@ rdf:label rdf:type owl:AnnotationProperty .
 :DG11 rdf:type owl:Class ;
       rdfs:subClassOf :DietaryGuideline ;
       rdfs:comment "Weight loss can be attained with lifestyle programs that achieve a 500–750 kcal/day energy deficit or provide ∼1,200–1,500 kcal/day for women adjusted for the individual's baseline body weight." ;
-      rdfs:label """Weight loss can be attained with lifestyle programs that achieve a 500–750 kcal/day energy deficit or provide ∼1,200–1,500 kcal/day for women adjusted for the individual's baseline body weight.
-If""" .
+      rdfs:label "Ideal caloric deficit for weight loss in women." .
 
 
 ###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG12
 :DG12 rdf:type owl:Class ;
       rdfs:subClassOf :DietaryGuideline ;
-      rdf:label "Weight loss can be attained with lifestyle programs that achieve a 500–750 kcal/day energy deficit and 1,500–1,800 kcal/day for men, adjusted for the individual's baseline body weight." .
+      rdfs:comment "Weight loss can be attained with lifestyle programs that achieve a 500–750 kcal/day energy deficit and 1,500–1,800 kcal/day for men, adjusted for the individual's baseline body weight." ;
+      rdfs:label "Ideal caloric deficit for weight loss in men." .
 
 
 ###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG17
@@ -170,7 +170,8 @@ If""" .
                                               ]
                           ] ;
       rdfs:subClassOf :DietaryGuideline ;
-      rdf:label "For people with type 2 diabetes or prediabetes, low-carbohydrate eating plans show potential to improve glycemia and lipid outcomes for up to 1 year." .
+      rdfs:comment "For people with type 2 diabetes or prediabetes, low-carbohydrate eating plans show potential to improve glycemia and lipid outcomes for up to 1 year." ;
+      rdfs:label "Low-carbohydrate eating plan recommendation." .
 
 
 ###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG25
@@ -189,12 +190,6 @@ If""" .
       rdfs:subClassOf :DietaryGuideline ;
       rdfs:comment "The National Academy of Medicine has defined an acceptable macronutrient distribution for total fat for all adults to be 20–35% of total calorie intake. " ;
       rdfs:label "Macronutrient distribution for total fat should be 20–35% of total calorie intake. "^^xsd:string .
-
-
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG27
-:DG27 rdf:type owl:Class ;
-      rdfs:subClassOf :DietaryGuideline ;
-      rdf:label " People with diabetes should be advised to follow the guidelines for the general population for the recommended intakes of saturated fat, dietary cholesterol, and trans fat. In general, trans fats should be avoided. In addition, as saturated fats are progressively decreased in the diet, they should be replaced with unsaturated fats and not with refined carbohydrates." .
 
 
 ###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Daily
@@ -306,10 +301,6 @@ If""" .
                         owl:equivalentClass [ rdf:type owl:Restriction ;
                                               owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
                                               owl:someValuesFrom :IdealTotalFat
-                                            ] ,
-                                            [ rdf:type owl:Restriction ;
-                                              owl:onProperty <http://semanticscience.org/resource/SIO_001403> ;
-                                              owl:allValuesFrom :DG27
                                             ] ;
                         rdfs:subClassOf :Directive ;
                         :hasPythonRepresentation """{'total fat': 
