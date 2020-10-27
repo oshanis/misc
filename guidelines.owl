@@ -7,7 +7,7 @@
 @base <http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl> .
 
 <http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl> rdf:type owl:Ontology ;
-                                                          owl:imports <https://purl.org/heals/gprov/1.0.0> ,
+                                                          owl:imports <https://purl.org/heals/gprov> ,
                                                                       <http://semanticscience.org/ontology/sio/v1.43/sio-release.owl> ,
                                                                       <http://www.w3.org/ns/prov-o-20130430> .
 
