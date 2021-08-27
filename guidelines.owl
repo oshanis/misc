@@ -4,21 +4,16 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl> .
+@base <https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl> .
 
-<http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl> rdf:type owl:Ontology ;
-                                                          owl:imports <https://purl.org/heals/gprov> ,
-                                                                      <http://semanticscience.org/ontology/sio/v1.43/sio-release.owl> ,
-                                                                      <http://www.w3.org/ns/prov-o-20130430> .
+<https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl> rdf:type owl:Ontology ;
+                                                                        owl:imports <http://semanticscience.org/ontology/sio/v1.43/sio-release.owl> ,
+                                                                                    <http://www.w3.org/ns/prov-o-20130430> ,
+                                                                                    <https://purl.org/heals/gprov> .
 
 #################################################################
 #    Annotation properties
 #################################################################
-
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#hasPythonRepresentation
-:hasPythonRepresentation rdf:type owl:AnnotationProperty ;
-                         rdfs:subPropertyOf rdfs:comment .
-
 
 ###  http://www.w3.org/1999/02/22-rdf-syntax-ns#label
 rdf:label rdf:type owl:AnnotationProperty .
@@ -36,26 +31,55 @@ rdf:label rdf:type owl:AnnotationProperty .
 <http://www.w3.org/ns/prov#wasGeneratedBy> rdf:type owl:AnnotationProperty .
 
 
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#hasPythonRepresentation
+:hasPythonRepresentation rdf:type owl:AnnotationProperty ;
+                         rdfs:subPropertyOf rdfs:comment .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#foodPreference
+:foodPreference rdf:type owl:ObjectProperty .
+
+
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#prohibits
+:prohibits rdf:type owl:ObjectProperty .
+
+
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#shouldNotEat
+:shouldNotEat rdf:type owl:ObjectProperty .
+
+
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#wantsToEat
+:wantsToEat rdf:type owl:ObjectProperty .
+
+
 #################################################################
 #    Classes
 #################################################################
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#ActivityGuideline
+###  http://semanticscience.org/resource/SIO_000614
+<http://semanticscience.org/resource/SIO_000614> owl:equivalentClass :MedicationDosage .
+
+
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#ActivityGuideline
 :ActivityGuideline rdf:type owl:Class ;
                    rdfs:subClassOf :LifestyleGuideline .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#ActivityLogSummary
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#ActivityLogSummary
 :ActivityLogSummary rdf:type owl:Class ;
                     rdfs:subClassOf :TemporalSummary .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Carbohydrate
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Carbohydrate
 :Carbohydrate rdf:type owl:Class ;
               rdfs:subClassOf :Nutrient .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#ConsistentCarbIntakeDirective
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#ConsistentCarbIntakeDirective
 :ConsistentCarbIntakeDirective rdf:type owl:Class ;
                                owl:equivalentClass [ rdf:type owl:Restriction ;
                                                      owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -66,6 +90,8 @@ rdf:label rdf:type owl:AnnotationProperty .
                                                      owl:allValuesFrom :DG02
                                                    ] ;
                                rdfs:subClassOf :Directive ;
+                               rdf:label "Baseline carbohydrate level should be 30g - 45g per carbs per meal +/- 5 carbs) whole dy 150g max." ;
+                               rdfs:comment "" ;
                                :hasPythonRepresentation """{'carbohydrate' : 
     {'unit': 'g',
      'meal' : 
@@ -73,12 +99,10 @@ rdf:label rdf:type owl:AnnotationProperty .
        'lower' : '30',
        'upper': '45'},
     'daily total' : '150'}
-}""" ;
-                               rdf:label "Baseline carbohydrate level should be 30g - 45g per carbs per meal +/- 5 carbs) whole dy 150g max." ;
-                               rdfs:comment "" .
+}""" .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#ConsistentPattern
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#ConsistentPattern
 :ConsistentPattern rdf:type owl:Class ;
                    owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                                 owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -94,7 +118,7 @@ rdf:label rdf:type owl:AnnotationProperty .
                    rdfs:subClassOf :TemporalPattern .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG02
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DG02
 :DG02 rdf:type owl:Class ;
       owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                    owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -119,7 +143,7 @@ rdf:label rdf:type owl:AnnotationProperty .
       rdfs:label "For a diabetic individual, if their daily insulin dosing is fixed, and there is a consistent pattern of carbohydrate intake with respect to time and amount, that pattern should be maintained." .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG05
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DG05
 :DG05 rdf:type owl:Class ;
       owl:equivalentClass [ rdf:type owl:Restriction ;
                             owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -141,21 +165,21 @@ rdf:label rdf:type owl:AnnotationProperty .
       rdfs:label "Diet low in total fat but relatively high in carbohydrates should be replaced with Mediterranean diet." .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG11
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DG11
 :DG11 rdf:type owl:Class ;
       rdfs:subClassOf :DietaryGuideline ;
       rdfs:comment "Weight loss can be attained with lifestyle programs that achieve a 500–750 kcal/day energy deficit or provide ∼1,200–1,500 kcal/day for women adjusted for the individual's baseline body weight." ;
       rdfs:label "Ideal caloric deficit for weight loss in women." .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG12
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DG12
 :DG12 rdf:type owl:Class ;
       rdfs:subClassOf :DietaryGuideline ;
       rdfs:comment "Weight loss can be attained with lifestyle programs that achieve a 500–750 kcal/day energy deficit and 1,500–1,800 kcal/day for men, adjusted for the individual's baseline body weight." ;
       rdfs:label "Ideal caloric deficit for weight loss in men." .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG17
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DG17
 :DG17 rdf:type owl:Class ;
       owl:equivalentClass [ rdf:type owl:Restriction ;
                             owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -174,7 +198,7 @@ rdf:label rdf:type owl:AnnotationProperty .
       rdfs:label "Low-carbohydrate eating plan recommendation." .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DG25
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DG25
 :DG25 rdf:type owl:Class ;
       owl:equivalentClass [ rdf:type owl:Restriction ;
                             owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -192,45 +216,45 @@ rdf:label rdf:type owl:AnnotationProperty .
       rdfs:label "Macronutrient distribution for total fat should be 20–35% of total calorie intake. "^^xsd:string .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Daily
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Daily
 :Daily rdf:type owl:Class ;
        rdfs:subClassOf :Frequency .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DerivedNutrient
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DerivedNutrient
 :DerivedNutrient rdf:type owl:Class ;
                  rdfs:subClassOf :Nutrient .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DiabeticUser
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DiabeticUser
 :DiabeticUser rdf:type owl:Class ;
               rdfs:subClassOf :HEALSUser .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Diet
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Diet
 :Diet rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#DietaryGuideline
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#DietaryGuideline
 :DietaryGuideline rdf:type owl:Class ;
                   rdfs:subClassOf :LifestyleGuideline .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Directive
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Directive
 :Directive rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Fat
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Fat
 :Fat rdf:type owl:Class ;
      rdfs:subClassOf :Nutrient .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#FixedMedicationDosage
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#FixedMedicationDosage
 :FixedMedicationDosage rdf:type owl:Class ;
                        rdfs:subClassOf :MedicationDosage .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#FoodLogSummary
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#FoodLogSummary
 :FoodLogSummary rdf:type owl:Class ;
                 owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                              owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -246,24 +270,24 @@ rdf:label rdf:type owl:AnnotationProperty .
                 rdfs:subClassOf :TemporalSummary .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Frequency
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Frequency
 :Frequency rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#GlycemicLoad
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#GlycemicLoad
 :GlycemicLoad rdf:type owl:Class ;
               rdfs:subClassOf :DerivedNutrient .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Goal
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Goal
 :Goal rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Guideline
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Guideline
 :Guideline rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#HEALSUser
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#HEALSUser
 :HEALSUser rdf:type owl:Class ;
            owl:equivalentClass [ rdf:type owl:Restriction ;
                                  owl:onProperty <http://semanticscience.org/resource/SIO_000062> ;
@@ -272,21 +296,21 @@ rdf:label rdf:type owl:AnnotationProperty .
            rdfs:subClassOf <http://semanticscience.org/resource/SIO_000485> .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#HighCarb
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#HighCarb
 :HighCarb rdf:type owl:Class ;
           rdfs:subClassOf :Diet ;
           rdf:label "greater that 65% carbs" ;
           <http://www.w3.org/ns/prov#hadPrimarySource> "https://blog.myfitnesspal.com/ask-the-dietitian-whats-the-best-carb-protein-and-fat-breakdown-for-weight-loss/"^^xsd:anyURI .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#HighProtein
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#HighProtein
 :HighProtein rdf:type owl:Class ;
              rdfs:subClassOf :Diet ;
              rdf:label "10–35% of of calories" ;
              <http://www.w3.org/ns/prov#hadPrimarySource> "https://blog.myfitnesspal.com/ask-the-dietitian-whats-the-best-carb-protein-and-fat-breakdown-for-weight-loss/"^^xsd:anyURI .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#IdealTotalFat
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#IdealTotalFat
 :IdealTotalFat rdf:type owl:Class ;
                owl:equivalentClass [ rdf:type owl:Restriction ;
                                      owl:onProperty <http://semanticscience.org/resource/SIO_001403> ;
@@ -296,7 +320,7 @@ rdf:label rdf:type owl:AnnotationProperty .
                <http://www.w3.org/ns/prov#hadPrimarySource> "https://blog.myfitnesspal.com/ask-the-dietitian-whats-the-best-carb-protein-and-fat-breakdown-for-weight-loss/"^^xsd:anyURI .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#IdealTotalFatDirective
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#IdealTotalFatDirective
 :IdealTotalFatDirective rdf:type owl:Class ;
                         owl:equivalentClass [ rdf:type owl:Restriction ;
                                               owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -313,34 +337,34 @@ rdf:label rdf:type owl:AnnotationProperty .
 }""" .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#InconsistentPattern
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#InconsistentPattern
 :InconsistentPattern rdf:type owl:Class ;
                      rdfs:subClassOf :TemporalPattern .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#IncreasingPattern
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#IncreasingPattern
 :IncreasingPattern rdf:type owl:Class ;
                    rdfs:subClassOf :TemporalPattern .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Insulin
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Insulin
 :Insulin rdf:type owl:Class ;
          rdfs:subClassOf :Medication .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#LifestyleGuideline
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#LifestyleGuideline
 :LifestyleGuideline rdf:type owl:Class ;
                     rdfs:subClassOf :Guideline .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#LowCarb
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#LowCarb
 :LowCarb rdf:type owl:Class ;
          rdfs:subClassOf :Diet ;
          rdf:label "45–65% of calories" ;
          <http://www.w3.org/ns/prov#hadPrimarySource> "https://blog.myfitnesspal.com/ask-the-dietitian-whats-the-best-carb-protein-and-fat-breakdown-for-weight-loss/"^^xsd:anyURI .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#LowFat
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#LowFat
 :LowFat rdf:type owl:Class ;
         owl:equivalentClass [ rdf:type owl:Restriction ;
                               owl:onProperty <http://semanticscience.org/resource/SIO_001403> ;
@@ -351,21 +375,20 @@ rdf:label rdf:type owl:AnnotationProperty .
         <http://www.w3.org/ns/prov#hadPrimarySource> "https://blog.myfitnesspal.com/ask-the-dietitian-whats-the-best-carb-protein-and-fat-breakdown-for-weight-loss/"^^xsd:anyURI .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#LoweringPattern
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#LoweringPattern
 :LoweringPattern rdf:type owl:Class ;
                  rdfs:subClassOf :TemporalPattern .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Medication
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Medication
 :Medication rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#MedicationDosage
-:MedicationDosage rdf:type owl:Class ;
-                  owl:equivalentClass <http://semanticscience.org/resource/SIO_000614> .
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#MedicationDosage
+:MedicationDosage rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Mediterranean
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Mediterranean
 :Mediterranean rdf:type owl:Class ;
                owl:equivalentClass [ rdf:type owl:Restriction ;
                                      owl:onProperty <http://semanticscience.org/resource/SIO_001403> ;
@@ -375,7 +398,7 @@ rdf:label rdf:type owl:AnnotationProperty .
                rdf:label "food items tagged as mediterranean" .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#MediterraneanDietDirective
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#MediterraneanDietDirective
 :MediterraneanDietDirective rdf:type owl:Class ;
                             owl:equivalentClass [ rdf:type owl:Restriction ;
                                                   owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -391,50 +414,50 @@ rdf:label rdf:type owl:AnnotationProperty .
 }""" .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#MonounsaturatedFat
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#MonounsaturatedFat
 :MonounsaturatedFat rdf:type owl:Class ;
                     rdfs:subClassOf :Fat .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Monthly
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Monthly
 :Monthly rdf:type owl:Class ;
          rdfs:subClassOf :Frequency .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#NormalUser
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#NormalUser
 :NormalUser rdf:type owl:Class ;
             rdfs:subClassOf :HEALSUser .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Nutrient
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Nutrient
 :Nutrient rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#PharmacologicGuideline
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#PharmacologicGuideline
 :PharmacologicGuideline rdf:type owl:Class ;
                         rdfs:subClassOf :Guideline .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#PolyunsaturatedFat
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#PolyunsaturatedFat
 :PolyunsaturatedFat rdf:type owl:Class ;
                     rdfs:subClassOf :Fat .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#PrediabeticUser
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#PrediabeticUser
 :PrediabeticUser rdf:type owl:Class ;
                  rdfs:subClassOf :HEALSUser .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Quantifier
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Quantifier
 :Quantifier rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Sodium
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Sodium
 :Sodium rdf:type owl:Class ;
         rdfs:subClassOf :Nutrient .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#TemporalPattern
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#TemporalPattern
 :TemporalPattern rdf:type owl:Class ;
                  owl:equivalentClass [ rdf:type owl:Restriction ;
                                        owl:onProperty <http://semanticscience.org/resource/SIO_001403> ;
@@ -442,37 +465,40 @@ rdf:label rdf:type owl:AnnotationProperty .
                                      ] .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#TemporalSummary
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#TemporalSummary
 :TemporalSummary rdf:type owl:Class .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#TotalFat
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#TotalFat
 :TotalFat rdf:type owl:Class ;
           rdfs:subClassOf :Fat .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Weekly
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Vegan
+:Vegan rdf:type owl:Class ;
+       rdfs:subClassOf :Diet .
+
+
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Weekly
 :Weekly rdf:type owl:Class ;
         rdfs:subClassOf :Frequency .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#WeightLossGoal
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#WeightLossGoal
 :WeightLossGoal rdf:type owl:Class ;
                 rdfs:subClassOf :Goal .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#WeightMaintainGoal
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#WeightMaintainGoal
 :WeightMaintainGoal rdf:type owl:Class ;
                     rdfs:subClassOf :Goal .
 
-
-###  http://semanticscience.org/resource/SIO_000614
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Alice
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Alice
 :Alice rdf:type owl:NamedIndividual ,
                 :PrediabeticUser ,
                 [ rdf:type owl:Restriction ;
@@ -486,7 +512,7 @@ rdf:label rdf:type owl:AnnotationProperty .
        rdfs:comment "Alice is a pre-diabetic woman in her thirties. She has a weight loss goal in mind. She has been consuming  a low fat and high carb diet for a month." .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#AliceDietPattern
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#AliceDietPattern
 :AliceDietPattern rdf:type owl:NamedIndividual ,
                            [ owl:intersectionOf ( :ConsistentPattern
                                                   [ rdf:type owl:Restriction ;
@@ -502,7 +528,7 @@ rdf:label rdf:type owl:AnnotationProperty .
                            ] .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#AliceGoal
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#AliceGoal
 :AliceGoal rdf:type owl:NamedIndividual ,
                     [ rdf:type owl:Restriction ;
                       owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -510,7 +536,7 @@ rdf:label rdf:type owl:AnnotationProperty .
                     ] .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#Bob
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#Bob
 :Bob rdf:type owl:NamedIndividual ,
               :DiabeticUser ,
               [ rdf:type owl:Restriction ;
@@ -528,11 +554,11 @@ rdf:label rdf:type owl:AnnotationProperty .
      rdfs:comment "Bob is an over-weight diabetic man in his sixties. He was advised to take a fixed dose of insulin, and consume a well-balanced consistent meal to maintain a healthy lifestyle."^^xsd:string .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#BobActivityPattern
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#BobActivityPattern
 :BobActivityPattern rdf:type owl:NamedIndividual .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#BobDietPattern
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#BobDietPattern
 :BobDietPattern rdf:type owl:NamedIndividual ,
                          [ owl:intersectionOf ( :ConsistentPattern
                                                 [ rdf:type owl:Restriction ;
@@ -548,7 +574,7 @@ rdf:label rdf:type owl:AnnotationProperty .
                          ] .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#BobGoal
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#BobGoal
 :BobGoal rdf:type owl:NamedIndividual ,
                   [ rdf:type owl:Restriction ;
                     owl:onProperty <http://semanticscience.org/resource/SIO_000008> ;
@@ -556,7 +582,7 @@ rdf:label rdf:type owl:AnnotationProperty .
                   ] .
 
 
-###  http://idea.tw.rpi.edu/ontologies/heals-guidelines.owl#MediterraneanDietEvidenceSentence
+###  https://raw.githubusercontent.com/oshanis/misc/master/guidelines.owl#MediterraneanDietEvidenceSentence
 :MediterraneanDietEvidenceSentence rdf:type owl:NamedIndividual ,
                                             <https://purl.org/heals/gprovEvidenceSentence> ;
                                    rdfs:comment "Data on the ideal total dietary fat content for people with diabetes are inconclusive, so an eating plan emphasizing elements of a Mediterranean-style diet rich in monounsaturated and polyunsaturated fats may be considered to improve glucose metabolism and lower cardiovascular disease risk and can be an effective alternative to a diet low in total fat but relatively high in carbohydrates." .
@@ -583,4 +609,4 @@ rdf:label rdf:type owl:AnnotationProperty .
 ] .
 
 
-###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
